@@ -33,6 +33,10 @@ BIZ = "MzYzNzI2MTI2Nw=="
 ALBUM_URL = ("https://mp.weixin.qq.com/mp/appmsgalbum?__biz="
              + BIZ + "&action=getalbum&album_id=" + ALBUM_ID)
 
+# GitHub 仓库（用于推送）
+GH_REPO = "Fan-zexu/agent-learning"
+GH_GIT_URL = f"https://github.com/{GH_REPO}.git"
+
 # 仓库根目录 = 本脚本上级目录（sync/ 的父目录）
 REPO_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEFAULT_COOKIE = os.path.expanduser("~/.wx_cookie.txt")
@@ -348,8 +352,11 @@ def main():
     ap = argparse.ArgumentParser(description="神光 Agent 学习合集增量同步")
     ap.add_argument("--cookie-file", default=DEFAULT_COOKIE, help=f"Cookie 文件（默认 {DEFAULT_COOKIE}）")
     ap.add_argument("--no-push", action="store_true", help="只同步，不推送 GitHub")
+    ap.add_argument("--gh-token", default=None, help="GitHub token（用于推送，也可用 GH_TOKEN 环境变量）")
     ap.add_argument("--delay", type=float, default=1.2, help="每篇间隔秒数")
     args = ap.parse_args()
+    if not args.gh_token:
+        args.gh_token = os.environ.get("GH_TOKEN")
 
     cookie = load_cookie(args.cookie_file)
     if not cookie:
@@ -404,20 +411,33 @@ def _git_commit_push(args, new_count):
         print("⏭️  --no-push 已跳过推送")
         return
     try:
+        # 若提供了 token，把 remote URL 注入 token 以便认证推送
+        if args.gh_token:
+            authed = f"https://x-access-token:{args.gh_token}@github.com/{GH_REPO}.git"
+            subprocess.run(["git", "-C", REPO_DIR, "remote", "set-url", "origin", authed],
+                           capture_output=True)
         subprocess.run(["git", "-C", REPO_DIR, "add", "-A"], check=True)
         msg = (f"sync: 新增 {new_count} 篇文章" if new_count
                else "sync: 刷新索引")
         msg += f"（{datetime.datetime.now().strftime('%Y-%m-%d')}）"
         subprocess.run(["git", "-C", REPO_DIR, "commit", "-q", "-m", msg],
                        check=True, capture_output=True)
-        r = subprocess.run(["git", "-C", REPO_DIR, "push"], capture_output=True, text=True)
+        # 确保有 origin（首次 clone 之外的场景）
+        subprocess.run(["git", "-C", REPO_DIR, "remote", "add", "origin", GH_GIT_URL],
+                       capture_output=True)
+        if args.gh_token:
+            authed = f"https://x-access-token:{args.gh_token}@github.com/{GH_REPO}.git"
+            subprocess.run(["git", "-C", REPO_DIR, "remote", "set-url", "origin", authed],
+                           capture_output=True)
+        r = subprocess.run(["git", "-C", REPO_DIR, "push", "origin", "HEAD"],
+                           capture_output=True, text=True)
         if r.returncode == 0:
             print(f"🚀 已推送 GitHub: {msg}")
         else:
-            print(f"⚠️ 推送失败（可能需要配置认证）: {r.stderr.strip()[:100]}")
-            print("   可手动执行: cd 神光agent学习 && git push")
-    except subprocess.CalledProcessError:
-        print("⚠️ git 操作异常，可手动提交")
+            print(f"⚠️ 推送失败: {r.stderr.strip()[:120]}")
+            print(f"   可手动执行: cd {REPO_DIR} && git push origin HEAD")
+    except subprocess.CalledProcessError as e:
+        print(f"⚠️ git 操作异常: {e}")
 
 
 if __name__ == "__main__":

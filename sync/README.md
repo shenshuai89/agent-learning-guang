@@ -76,10 +76,30 @@ python3 sync/sync_album.py --cookie-file /path/to/cookie.txt
 | 推送失败 `could not read Username` | git 未带认证 | 配置 `GH_TOKEN` 或在仓库设带 token 的 remote URL |
 | 新文章没被抓到 | 作者刚发布，合集缓存未更新 | 稍等片刻再跑一次 |
 
-## 六、在 CodeBuddy 中运行
+## 六、在 WorkBuddy 中触发（推荐方式）
 
-如果你通过 CodeBuddy 使用，直接对 AI 说：
+每次 WorkBuddy 会话是全新沙箱，仓库需重新 clone；Cookie 也会过期，需重新提供。所以触发流程是：
 
-> 用 sync_album.py 同步合集新文章
+### 触发模板（复制给 WorkBuddy）
 
-即可。Cookie 仍需按上面第一步手动抓取后提供。
+> 帮我同步 GitHub 仓库 `Fan-zexu/agent-learning` 的微信合集新文章。
+> 步骤：
+> 1. `gh repo clone Fan-zexu/agent-learning /workspace/agent-learning`（或 git clone）
+> 2. 把下面的微信 Cookie 写入 `~/.wx_cookie.txt`：
+>    `wxuin=...; pass_ticket=...; wap_sid2=...; appmsg_token=...`
+> 3. 运行 `python3 /workspace/agent-learning/sync/sync_album.py --gh-token <你的GitHub token>`
+>
+> 微信 Cookie：`<粘贴最新 Cookie>`
+> GitHub token：`<粘贴 token，或省略则只同步不推送>`
+
+WorkBuddy 会自动完成 clone → 写 Cookie → 运行同步 → 推送 GitHub，新文章会按 `pos_num` 自动编号追加（如 `41-xxx.md`）。
+
+### 最省事的说法
+
+如果你不想记步骤，直接对 WorkBuddy 说：
+
+> 同步我的 agent-learning 合集，Cookie 是 `<粘贴>`
+
+WorkBuddy 知道这个仓库和脚本，会自己处理 clone 和运行。你只需提供**新鲜的微信 Cookie**（必须）；GitHub token 用于推送（可选，不提供则只在本地生成文件）。
+
+> ⚠️ Cookie 是唯一必须手动刷新的东西——它会过期（一般几小时～一天）。token 不变可一直用。
