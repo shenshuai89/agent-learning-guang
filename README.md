@@ -7,6 +7,8 @@
 
 ## 视频链接地址
 https://github.com/Fan-zexu/agent-learning-videos
+
+
 ## 目录（学习顺序）
 
 | 编号 | 标题 | 发布日期 | 代码 | 图片 | 视频 | 文件 |
