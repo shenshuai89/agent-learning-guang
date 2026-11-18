@@ -419,6 +419,8 @@ node ./src/mini-cursor.mjs
 
 ▶ **[视频6](http://mpvideo.qpic.cn/0bc3ayaayaaagyaofakinzuvabwdbqdaadaa.f10002.mp4?dis_k=dab64fbecbd1f7443e7672e7c3a09b1a&dis_t=1783680878&play_scene=10110&auth_info=VfiT5Rdw7d692iRcxeDTkHcAHAMgaDlPTWxgHTp5Z05zMUc1UVRxICkqST5/aw83VRcmCQ==&auth_key=93366ac670c66bacabf8e4ce2ba9b29f)**
 
+![todoList](./images/03-todolist.png)
+
 它和 cursor 肯定有差距，但是已经实现部分功能了。
 我们不是想真的实现 cursor，只是要知道它的实现原理。
 代码上传了课程仓库： https://github.com/QuarkGluonPlasma/ai-agent-course-code/tool-test
