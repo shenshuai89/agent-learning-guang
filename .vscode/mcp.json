@@ -1,0 +1,12 @@
+{
+  "servers": {
+    "my-mcp-server": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "/Users/shenshuai/Desktop/code/github/agent-learning-guang/code/04mcp/src/my-mcp-server.mjs"
+      ]
+    }
+	},
+  "inputs": []
+}

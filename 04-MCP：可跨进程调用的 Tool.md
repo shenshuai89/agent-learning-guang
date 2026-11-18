@@ -190,6 +190,38 @@ resource 主要是查询信息用的（read）， 而 tool 是执行功能用的
 
 ![截图9](https://mmbiz.qpic.cn/sz_mmbiz_png/JnZIbTicL4jVyG2W4yUxn0yaZkWNVjcfF4WRZ57UGvtNsnPRUv77ibRhJ1T9iaN0oll37ZxzSCj7iaibmuOerXOv1vQ/640?wx_fmt=png&from=appmsg)
 
+
+在vscode中添加my-mcp-server
+首先在扩展工具中安装 MCP Server Explorer 工具
+![MCP Server Explorer 工具](./images/MCP-Server-Explorer-工具.png)
+
+点击Server Explorer右侧的+号，可以配置mcp server：
+配置完成的json
+``` json
+{
+  "servers": {
+    "my-mcp-server": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "/Users/xxxx/code/04mcp/src/my-mcp-server.mjs"
+      ]
+    }
+	},
+  "inputs": []
+}
+```
+
+配置完成后，可以点击mcp右侧的运行按钮
+运行成功后，就可以在vscode的copilot中进行测试
+![copilot查看设置的mcp](./images/copilot-setting-mcp.png)
+
+给 copilot 开启mcp服务
+![copilot开启mcp服务](./images/copilot-mcp-start.png)
+
+接下来就可以在对话框中输入：“使用 my-mcp-server 的 工具，帮我查下001用户信息”
+![copilot查询结果](./images/copilot-mcp-result.png)
+
 我们在 langchain 代码里调用下 mcp server：
 用这个包：
 
