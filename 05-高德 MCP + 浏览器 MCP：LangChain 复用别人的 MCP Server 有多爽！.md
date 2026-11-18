@@ -8,7 +8,7 @@
 
 上节我们学了 MCP。
 
-▶ **[视频0](http://mpvideo.qpic.cn/0bc3riagqaaaeuakyb2mbjuvbcwdncfaa2aa.f10002.mp4?dis_k=0a987a12cfd32e023845f741b87d96b6&dis_t=1783680876&play_scene=10110&auth_info=dsP8oH8Q27G8/UEe6+vM4VhMDjRhSBZtYxFnYWwEOjJQNUBVbzRHTygNLHxRYBBGels0Pg==&auth_key=115686807da55c230ddb8d4cf72d682c)**
+▶ **[视频0]()**
 
 ![截图0](https://mmbiz.qpic.cn/sz_mmbiz_png/JnZIbTicL4jVjicppMtsQDdZBjGd9SevLHiaTpXFhObAf1OXMEEA7p1dsZQTO0j5jhOMiaRDjA59D4VIugt3UkMPZQ/640?wx_fmt=png&from=appmsg)
 
@@ -25,13 +25,13 @@ FileSystem MCP：读写文件、创建目录等
 首先是高德 MCP，我们需要先获取一个 apikey：
 https://developer.amap.com/
 
-▶ **[视频1](http://mpvideo.qpic.cn/0b2ekqaeoaaat4aik6cm6zuvavgdi5kaarya.f10002.mp4?dis_k=c7ee75cadc95839d9ffefdbef459cda8&dis_t=1783680876&play_scene=10110&auth_info=BKuU1+AWTorivqgQSb3mwuYFG1RhZkxKYmETNzdsW2s5UWkUXjpqFhwqWH0rB20eQScMbms=&auth_key=dcce076b102bf0bb00e3a2b592cdcb8f)**
+▶ **[视频1]()**
 
 创建应用，然后创建一个 api key
-类型选 web 服务就行。
+类型选 **web 服务** 就行。
 然后我们先在 cursor 里测试下这个 mcp 服务是否可用：
 
-▶ **[视频2](http://mpvideo.qpic.cn/0bc3taagmaaak4ake22m4juvbggdm2maazqa.f10002.mp4?dis_k=33cd6acac89de8dc32169109875e4898&dis_t=1783680876&play_scene=10110&auth_info=Weuc9shGGdm96/pMF77mnrFZQ1QxYkpLYzUTNzA3WzpkWjQTVG49RUN/CiF1BG1CFntUbjs=&auth_key=aad03ff6247108e897e2d2d60aaa574f)**
+▶ **[视频2]()**
 
 可以看到，配好之后，就可以查到这个 mcp server 里的一堆 tool 了：
 
@@ -57,7 +57,7 @@ https://developer.amap.com/
 },
 ```
 
-▶ **[视频3](http://mpvideo.qpic.cn/0bc3quadwaaaz4ap6fsmabuvbbodhocqaoya.f10002.mp4?dis_k=eac387586e74d3049fbcb4c466f9e4fe&dis_t=1783680876&play_scene=10110&auth_info=WJT0hMETSozm7qlBGb+1wuBVHAlnMEocbWNFbmVqVWplUWBEXjpuEBh6WSx7BT4eR3cLM20=&auth_key=8843aeaedd39b55531c77644bce7e824)**
+▶ **[视频3]()**
 
 就是用 npx 跑一个 npm 包，会创建一个支持 stdio 连接的进程，然后连上其中的 mcp server 就好了。
 这个 mcp server 里肯定封装了和高德服务端的通信，本质上是一样的。
@@ -149,12 +149,12 @@ mcp client 的代码和上节一样，用 @langchain/mcp-adapters
 
 先注释掉高德 mcp server 跑一下：
 
-▶ **[视频4](http://mpvideo.qpic.cn/0bc3nqagoaaa2makhlsmhbuva3gdm5waazya.f10002.mp4?dis_k=a52e7126d2510720f5b0a98c29b90e6d&dis_t=1783680876&play_scene=10110&auth_info=DJ2upZ9FSt/l4/IWHbCxwrUETAhjZBtKYmVCYDc9V28xVWJAAWluQxt3Ant/CjoeEiZbMmk=&auth_key=5447f64e7725587126765c0650132d5d)**
+▶ **[视频4]()**
 
 可以看到，大模型没法处理地理位置信息，让你用地图。
 我们启用高德 MCP Server：
 
-▶ **[视频5](http://mpvideo.qpic.cn/0bc33qagoaaaxaakhm2mhjuvbxgdm7oaazya.f10002.mp4?dis_k=7514b3673e785c399a318b0213562841&dis_t=1783680876&play_scene=10110&auth_info=cajeplhJ3LXiqEUduODOs1NCWDNmHB5hNkNgZDwHaTlXM0NeZW1AS3ZYKH8CaxIUcVViOQ==&auth_key=5ef580704ca2d754e7c0a1b1c4b82cb2)**
+▶ **[视频5]()**
 
 现在，大模型就可以调用高德 mcp 里的 tool 给出酒店位置和路线了！
 这就是 mcp 的好处，直接复用别人写好的 tool。
@@ -182,7 +182,7 @@ mcp 官方维护的一个 mcp server
 逗号分隔
 我们可以先在 cursor 里配置下这个 mcp 服务，看下有哪些 tool：
 
-▶ **[视频6](http://mpvideo.qpic.cn/0bc3ymagsaaaeuak3esmgzuvbq6dnhbqa2ia.f10002.mp4?dis_k=44aad269f593be2af9b7105b64bd0a16&dis_t=1783680876&play_scene=10110&auth_info=XpSxr/JOSti16v8XGb2xn7UAS1o2ZUhOMWZGbzU6W21jB2IRAWVuREt+D3p7BzpDEiJcYDw=&auth_key=e384cfb33d64c32ae391b5230570a380)**
+▶ **[视频6]()**
 
 可以看到，有文件读写、目录创建、文件移动等 tool。
 这样，配上这个 mcp，大模型就有文件读写能力了。
@@ -216,7 +216,7 @@ await runAgentWithTools("北京南站附近的5个酒店，以及去的路线，
 
 跑跑试试：
 
-▶ **[视频7](http://mpvideo.qpic.cn/0b2ekeaeqaaa4iaiuzkm7fuvauodjbiqasaa.f10002.mp4?dis_k=ac21d17a37e415759d5869330dded0bc&dis_t=1783680876&play_scene=10110&auth_info=Deig4YUVHdey4/lGH+23nuFRGA9jMhseMWVHN2A4B2owV2dFXjg5S0x3CSt9VzxCRnMPNWk=&auth_key=c819dade7ccd6655289e7edf7edcab1b)**
+▶ **[视频7]()**
 
 可以看到，大模型首先调用高德 mcp 拿到了附近的酒店位置，然后规划了路线
 最后调用 FileSystem MCP 写入了文件。
@@ -236,7 +236,7 @@ await runAgentWithTools("北京南站附近的5个酒店，以及去的路线，
 }
 ```
 
-▶ **[视频8](http://mpvideo.qpic.cn/0bc32eagqaaajuakyhcmgvuvbuodndiqa2aa.f10002.mp4?dis_k=bf24963eb745083c2cf2255ffbca1742&dis_t=1783680876&play_scene=10110&auth_info=DPG32KQQTt227/8TSeuwmrRWTl5gNxsbbGJDMzE4VmsxWmMTVT9qQUh7D34rUTtGE3RZZGo=&auth_key=42499fc4d2ea815cbf1e12a695a52e8c)**
+▶ **[视频8]()**
 
 可以看到很多工具。
 在 langchain 里调用下：
@@ -247,7 +247,7 @@ await runAgentWithTools("北京南站附近的5个酒店，以及去的路线，
 await runAgentWithTools("北京南站附近的酒店，最近的 3 个酒店，拿到酒店图片，打开浏览器，展示每个酒店的图片，每个 tab 一个 url 展示，并且在把那个页面标题改为酒店名");
 ```
 
-▶ **[视频9](http://mpvideo.qpic.cn/0bc3eeagsaaauuak2h2mdruvaiodneqqa2ia.f10002.mp4?dis_k=98bb7fe85e12b2fdcf99b51050807e66&dis_t=1783680876&play_scene=10110&auth_info=Xpy3kfUWEdbm7/tFGrnry7IETFo7aUtNYjIVbmZqU2xjUDYUBDo1Shh7Cyh4A2AXFSZbYDE=&auth_key=c8d5f19cc2a1a1453b65bc6361f59a13)**
+▶ **[视频9]()**
 
 可以看到，搜到了北京南站最近的 3 个酒店，并且浏览器打开了酒店图片。
 只要配好 MCP，大模型就可以直接调用里面的 tools 了：

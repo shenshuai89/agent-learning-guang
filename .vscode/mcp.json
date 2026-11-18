@@ -6,7 +6,26 @@
       "args": [
         "/Users/shenshuai/Desktop/code/github/agent-learning-guang/code/04mcp/src/my-mcp-server.mjs"
       ]
+    },
+    "amap-maps": {
+      "type": "http",
+      "url": "https://mcp.amap.com/mcp?key=${input:amap-api-key}"
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/Users/shenshuai/Desktop/code/github/agent-learning-guang/code/04mcp"
+      ]
     }
 	},
-  "inputs": []
+  "inputs": [
+    {
+      "type": "promptString",
+      "id": "amap-api-key",
+      "description": "高德地图 Web 服务 API Key",
+      "password": true
+    }
+  ]
 }
