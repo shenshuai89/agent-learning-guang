@@ -37,7 +37,7 @@
 ![截图4](https://mmbiz.qpic.cn/sz_mmbiz_png/JnZIbTicL4jXIBXDDibWGDkKQCuDAWbc2Oe90TUJxhQBfjibXYhlhp0ibpadDQ40WEJVicEXlW38AdxGlg6BbtsyKqw/640?wx_fmt=png&from=appmsg)
 
 设置这个是为了保证语义连贯性
-通常设置为 chunkSize 的 10% - 20%
+通常把 chunkOverlap 设置为 chunkSize 的 10% - 20%
 牺牲了一点存储空间（因为数据重复了），换取了模型对上下文理解的完整性。
 那 langchain 都有哪些 splitter 呢？
 我们看下 @langchain/textsplitters 这个包：
